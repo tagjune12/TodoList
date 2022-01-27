@@ -1,10 +1,11 @@
 const loginID = document.querySelector("#login-form #userID");
 const loginPW = document.querySelector("#login-form #userPW");
 const loginForm = document.querySelector("#login-form");
+const clockSection = document.querySelector("#clock-todolist");
 
 
-const toSignInButton = document.querySelector("#signin");
-const signinPage = document.querySelector("#signin-form");
+const tosignUpButton = document.querySelector("#signup");
+const signUpPage = document.querySelector("#signup-form");
 
 const HIDDEN_CLASS = "hidden";
 
@@ -13,23 +14,28 @@ const userDB = window.localStorage;
 
 const onSubmit = (event) => {
   event.preventDefault();
+  console.log("로그인 Submit");
+  const userID = loginID.value;
+  const userPW = loginPW.value;
 
-  // const userID = loginID.value;
-  // const userPW = loginPW.value;
+  const userPWFromDB = userDB.getItem(userID);
 
-  // const userPWFromDB = userDB.getItem(userID.toString());
-
-  loginForm.classList.add(HIDDEN_CLASS);
-  // if (userPWFromDB.toString() === userPW) {
-  //   // 화면 전환 로직
-  //   loginForm.classList.add(HIDDEN_CLASS);
-  // }
+  // loginForm.classList.add(HIDDEN_CLASS);
+  if (userPWFromDB === userPW) {
+    // 화면 전환 로직
+    loginForm.classList.add(HIDDEN_CLASS);
+    clockSection.classList.remove(HIDDEN_CLASS);
+    console.log("로그인 성공");
+  }
+  else {
+    alert("일치하는 계정이 없습니다");
+  }
 }
 
-const onSignInClick = () => {
+const onSignUpClick = () => {
   loginForm.classList.add(HIDDEN_CLASS);
-  signinPage.classList.remove(HIDDEN_CLASS);
+  signUpPage.classList.remove(HIDDEN_CLASS);
 }
 
 loginForm.addEventListener("submit", onSubmit);
-toSignInButton.addEventListener("click", onSignInClick);
+tosignUpButton.addEventListener("click", onSignUpClick);

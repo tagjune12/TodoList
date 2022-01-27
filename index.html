@@ -12,42 +12,59 @@
 <body>
   <header id="main-header">
     <h1 id="title">Title</h1>
-    <a id="signin">SIGN IN</a>
+    <a id="signup">SIGN UP</a>
   </header>
   <div class="content">
     <section id="main-section">
       <!-- 회원가입 -->
-      <form id="signin-form" class="hidden">
-        <h3>Sign In</h3>
+      <form id="signup-form" class="hidden">
+        <h3>Sign Up</h3>
         <div>
           <label for="userID">ID</label>
-          <input id="userID" type="text" placeholder="ID" required />
+          <input id="userID" maxlength="12" type="text" placeholder="ID" value="" required />
         </div>
         <div>
           <label for="userPW">PW</label>
-          <input id="userPW" type="password" placeholder="PW" required />
+          <input id="userPW" maxlength="15" type="password" placeholder="PW" value="" required />
         </div>
-        <button>Sign In</button><h6 id="message"></h6>
+        <button>Sign Up</button>
+        <h6 id="message"></h6>
       </form>
       <!-- 로그인 -->
       <form id="login-form">
         <h3>Log In</h3>
         <div>
           <label for="userID">ID</label>
-          <input id="userID" type="text" placeholder="ID" required />
+          <input id="userID" maxlength="12" type="text" placeholder="ID" required />
         </div>
         <div>
           <label for="userPW">PW</label>
-          <input id="userPW" type="password" placeholder="PW" required />
+          <input id="userPW" maxlength="15" type="password" placeholder="PW" required />
         </div>
-        <!-- <input id="login_btn" type="submit" value="Log In"> -->
         <button>Log In</button>
       </form>
+
+    </section>
+    <!-- 시계 & Todo List -->
+    <section id="clock-todolist" class="hidden">
+      <!-- 시계 -->
+        <h3 id="clock"></h3>
+      <div>
+        <form id="todo-input-form">
+          <input id="todo-input" class="todo-list" type="text" placeholder="할 일을 입력하세요"/><button>+</button>
+        </form>
+        <ul id= "todo-list"class="todo-list">
+          <li><input type="checkbox"/><span>test</span><button>❌</button></li>
+        </ul>        
+      </div>
     </section>
   </div>
   <!-- 스크립트 -->
-  <script src="JavaScript/logIn.js"></script>
-  <script src="JavaScript/signIn.js"></script>
+  <script src="JavaScript/login.js"></script>
+  <script src="JavaScript/signup.js"></script>
+  <script src="JavaScript/clock.js"></script>
+  <script src="JavaScript/todolist.js"></script>
+  
 </body>
 
 </html>
