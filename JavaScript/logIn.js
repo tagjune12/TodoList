@@ -1,5 +1,8 @@
-const loginID = document.querySelector("#login-form #userID");
-const loginPW = document.querySelector("#login-form #userPW");
+import { getUserInfo } from "./storage";
+
+
+const loginID = document.querySelector("#login-id");
+const loginPW = document.querySelector("#login-pw");
 const loginForm = document.querySelector("#login-form");
 const clockSection = document.querySelector("#clock-todolist");
 
@@ -9,8 +12,6 @@ const signUpPage = document.querySelector("#signup-form");
 
 const HIDDEN_CLASS = "hidden";
 
-const userDB = window.localStorage;
-
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -18,9 +19,8 @@ const onSubmit = (event) => {
   const userID = loginID.value;
   const userPW = loginPW.value;
 
-  const userPWFromDB = userDB.getItem(userID);
+  const userPWFromDB = getUserInfo(userID);
 
-  // loginForm.classList.add(HIDDEN_CLASS);
   if (userPWFromDB === userPW) {
     // 화면 전환 로직
     loginForm.classList.add(HIDDEN_CLASS);
