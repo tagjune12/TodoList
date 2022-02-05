@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 구글 로그인 인증 -->
+  <!-- <meta name="google-signin-client_id" content="829367681458-1kp13v94beem9jsegrk56jc7ppl4qis6.apps.googleusercontent.com"> -->
   <link rel="stylesheet" href="./CSS/index.css">
   <title>TodoList</title>
 </head>
@@ -21,7 +23,7 @@
         <h3>Sign Up</h3>
         <div>
           <label for="userID">ID</label>
-          <input id="userID" maxlength="12" type="text" placeholder="ID" value="" required />
+          <input id="userID" maxlength="32" type="text" placeholder="ID" value="" required />
         </div>
         <div>
           <label for="userPW">PW</label>
@@ -35,7 +37,7 @@
         <h3>Log In</h3>
         <div>
           <label for="login-id">ID</label>
-          <input id="login-id" maxlength="12" type="text" placeholder="ID" required />
+          <input id="login-id" maxlength="32" type="text" placeholder="ID" required />
         </div>
         <div>
           <label for="login-pw">PW</label>
@@ -60,11 +62,14 @@
     </section>
   </div>
   <!-- 스크립트 -->
+  <!-- <script src="/node_modules/@firebase/firebase/auth.js"></script> -->
+  <!-- <script src="JavaScript/storage.js"></script> -->
+  <script type="module" src="JavaScript/storage.js"></script>
   <script src="JavaScript/login.js"></script>
-  <script src="JavaScript/signup.js"></script>
+  <script type = "module" src="JavaScript/signup.js"></script>
   <script src="JavaScript/clock.js"></script>
   <script src="JavaScript/todolist.js"></script>
-  <script src="JavaScript/storage.js" type="module"></script>
+
   
 </body>
 
