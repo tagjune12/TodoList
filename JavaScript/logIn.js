@@ -1,10 +1,10 @@
 import { loginEmail } from "./database.js";
-
+import { getTodoList } from "./todolist.js";
 
 const loginID = document.querySelector("#login-id");
 const loginPW = document.querySelector("#login-pw");
 const loginForm = document.querySelector("#login-form");
-// const clockSection = document.querySelector("#clock-todolist");
+const clockSection = document.querySelector("#clock-todolist");
 
 
 const tosignUpButton = document.querySelector("#signup");
@@ -24,6 +24,10 @@ const onSubmit = (event) => {
     const user = userCredential.user;
     console.log(`signup result: ${userCredential}`);
     alert("로그인 성공");
+    loginForm.classList.add(HIDDEN_CLASS);
+    getTodoList(userEmail);
+    clockSection.classList.remove(HIDDEN_CLASS);
+
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
