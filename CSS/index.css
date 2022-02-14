@@ -16,6 +16,10 @@ a {
   display: none;
 }
 
+.checked {
+  text-decoration: line-through;
+}
+
 /* 헤더 */
 #main-header {
   display: flex;

@@ -1,5 +1,5 @@
 import { loginEmail } from "./database.js";
-import { getTodoList } from "./todolist.js";
+import { showTodoList } from "./todolist.js";
 
 const loginID = document.querySelector("#login-id");
 const loginPW = document.querySelector("#login-pw");
@@ -24,14 +24,23 @@ const onSubmit = (event) => {
     const user = userCredential.user;
     console.log(`signup result: ${userCredential}`);
     alert("로그인 성공");
+    // 로그인폼 숨기기
     loginForm.classList.add(HIDDEN_CLASS);
-    getTodoList(userEmail);
+
+    // Todo List 페이지에 표시될 유저이름 표시
+    const userName = document.querySelector("#username");
+    userName.innerText = `${userEmail.split("@")[0]}'s today Todo List`;
+
+    // Todo List 표시
+    showTodoList(userEmail);
+    // TodoList와 시계 표시
     clockSection.classList.remove(HIDDEN_CLASS);
 
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode);
+    // console.log(errorCode);
+    console.log(errorMessage);
     alert(errorMessage);
   })
 }

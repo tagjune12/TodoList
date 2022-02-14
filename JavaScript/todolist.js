@@ -1,59 +1,90 @@
-import { readData, writeData, test } from "./database.js";
+import { readData, writeData } from "./database.js";
 
-const userName = document.querySelector("#username");
 const todoInputForm = document.querySelector("#todo-input-form");
 const todoContent = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
 
-let id = "";
-let domain = "";
+let todos = [];
+let userEmail = "";
 
-// 데이터베이스 활용O
 const onSubmit = (event) => {
     console.log("onTodoSubmit");
     event.preventDefault();
 
-    // 서버에 데이터 쓰기
+    // 로컬저장소에 데이터 쓰기
     addTodo(todoContent.value);
-    // TodoList 갱신하기
+
 
     todoContent.value = "";
 }
 
-const getTodoList = (email = "") => {
-    console.log(email);
+// 할일 추가될때 화면에만 이전것들도 같이 추가되는 버그 있음
+const showTodoList = (email = "") => {
+    console.log("showTodoList:", email);
+
+    // 로그인시
     if (email !== "") {
-        const splittedEmail = email.split("@");
-        id = splittedEmail[0];
-        domain = splittedEmail[1].split(".")[0];
-
+        userEmail = email;
+        todos = readData(userEmail);
+        console.log(todos);
     }
-    userName.innerText = id;
-    // 데이터 조회
-    // readData(domain, id);
 
-    // readData(domain, id).then((snapshot) => {
-    //     if (snapshot.exists()) {
-    //         // 데이터가 있는경우
-    //         console.log(snapshot.val());
-    //     } else {
-    //         // 데이터가 없는 경우
-    //         console.log("No data available");
-    //     }
-    // }).catch((error) => {
-    //     console.error(error);
-    // });
+    todos = readData(userEmail);
 
-    // let testData = undefined;
-    console.log("getTodoList\n", test(domain, id, testData));
-    // console.log("testData: ", testData);
+    if (todos !== null) {
+        // todoList 화면에 표시
+        let todoListItems = [];
+        todos.forEach(value => {
+            const listItem = document.createElement("li");
+
+            const checkBox = document.createElement("input");
+            checkBox.type = 'checkbox';
+            checkBox.addEventListener("click", checkTodo);
+
+            const content = document.createElement("span");
+            content.innerText = value;
+
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "❌";
+            removeButton.addEventListener("click", removeTodo);
+
+            listItem.appendChild(checkBox);
+            listItem.appendChild(content);
+            listItem.appendChild(removeButton);
+
+            todoListItems.push(listItem);
+        });
+
+        todoListItems.forEach(item => todoList.appendChild(item));
+    }
 }
 
 const addTodo = (todo) => {
-    writeData(domain, id, todo);
-    getTodoList();
+    if (todos === null) todos = [];
+    todos.push(todo);
+    writeData(userEmail, todos);
+    showTodoList();
+}
+
+const removeTodo = (event) => {
+    const li = event.target.parentElement;
+    const span = li.children[1];
+
+    todos = todos.filter((value) => value !== span.innerText);
+    li.remove();
+    writeData(userEmail, todos);
+    showTodoList();
+}
+
+const checkTodo = (event) => {
+    const isCheck = event.target.checked;
+    const li = event.target.parentElement;
+    const span = li.children[1];
+
+    if (isCheck) span.classList.add("checked");
+    else span.classList.remove("checked");
 }
 
 todoInputForm.addEventListener("submit", onSubmit);
 
-export { getTodoList };
+export { showTodoList };
