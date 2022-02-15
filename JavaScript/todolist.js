@@ -63,7 +63,26 @@ const addTodo = (todo) => {
     if (todos === null) todos = [];
     todos.push(todo);
     writeData(userEmail, todos);
-    showTodoList();
+    // showTodoList();
+
+    const listItem = document.createElement("li");
+
+    const checkBox = document.createElement("input");
+    checkBox.type = 'checkbox';
+    checkBox.addEventListener("click", checkTodo);
+
+    const content = document.createElement("span");
+    content.innerText = todo;
+
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "❌";
+    removeButton.addEventListener("click", removeTodo);
+
+    listItem.appendChild(checkBox);
+    listItem.appendChild(content);
+    listItem.appendChild(removeButton);
+
+    todoList.appendChild(listItem);
 }
 
 const removeTodo = (event) => {

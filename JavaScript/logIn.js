@@ -26,6 +26,8 @@ const onSubmit = (event) => {
     alert("로그인 성공");
     // 로그인폼 숨기기
     loginForm.classList.add(HIDDEN_CLASS);
+    // 회원가입 버튼 숨기기
+    tosignUpButton.classList.add(HIDDEN_CLASS);
 
     // Todo List 페이지에 표시될 유저이름 표시
     const userName = document.querySelector("#username");
