@@ -1,6 +1,7 @@
 import { loginEmail } from "./database.js";
 import { showTodoList } from "./todolist.js";
 
+const title = document.querySelector("#title");
 const loginID = document.querySelector("#login-id");
 const loginPW = document.querySelector("#login-pw");
 const loginForm = document.querySelector("#login-form");
@@ -30,8 +31,9 @@ const onSubmit = (event) => {
     tosignUpButton.classList.add(HIDDEN_CLASS);
 
     // Todo List 페이지에 표시될 유저이름 표시
-    const userName = document.querySelector("#username");
-    userName.innerText = `${userEmail.split("@")[0]}'s today Todo List`;
+    // const userName = document.querySelector("#username");
+    // userName.innerText = `${userEmail.split("@")[0]}'s today Todo List`;
+    title.innerText = `Hello ${userEmail.split("@")[0]}!`;
 
     // Todo List 표시
     showTodoList(userEmail);

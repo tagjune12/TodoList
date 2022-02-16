@@ -26,24 +26,27 @@ a {
 }
 
 #main-header > #title {
+  width: fit-content;
   margin: 0 auto;
 }
 
+#main-header > #signup {
+  display: absolute;
+  float: right;
+}
+
+#main-header > #signup:hover {
+  color: blue;
+  cursor: pointer;
+}
+
 /* 본문 */
-#main-section {
+
+.content {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-#main-section > #login-form {
-  margin: auto;
   align-items: center;
+  justify-content: center;
 }
 
-#login-form > button {
-  width: 100px;
-  height: 25px;
-  border-radius: 5px;
-  background: none;
+.content section {
 }

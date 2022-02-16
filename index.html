@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 구글 로그인 인증 -->
-  <!-- <meta name="google-signin-client_id" content="829367681458-1kp13v94beem9jsegrk56jc7ppl4qis6.apps.googleusercontent.com"> -->
   <link rel="stylesheet" href="./CSS/index.css">
+  <link rel="stylesheet" href="./CSS/login.css">
   <title>TodoList</title>
 </head>
 
 <body>
   <header id="main-header">
-    <h1 id="title">Title</h1>
+    <h1 id="title">TodoList</h1>
     <a id="signup">SIGN UP</a>
   </header>
   <div class="content">
@@ -43,14 +42,16 @@
           <label for="login-pw">PW</label>
           <input id="login-pw" maxlength="15" type="password" placeholder="PW" required />
         </div>
-        <button>Log In</button>
+        <div>
+          <button>Log In</button>
+        </div>
       </form>
 
     </section>
     <!-- 시계 & Todo List -->
     <section id="clock-todolist" class="hidden">
       <!-- 시계 -->
-      <h2 id="username"></h2>
+      <!-- <h2 id="username"></h2> -->
       <h3 id="clock"></h3>
       <div>
         <form id="todo-input-form">
@@ -66,7 +67,6 @@
   <script type="module" src="JavaScript/signup.js?ver=1"></script>
   <script type="module" src="JavaScript/login.js?ver=1.2"></script>
   <script src="JavaScript/clock.js?ver=1.1"></script>
-  <!-- <script src="JavaScript/todolist.js?ver=1.1"></script> -->
 </body>
 
 </html>

@@ -1,0 +1,41 @@
+/* 본문 */
+/* #main-section {
+  display: flex;
+} */
+
+#main-section > #login-form {
+  /* margin: 0 auto; */
+  /* align-items: center; */
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#main-section > #login-form > h3 {
+  /* 내용에 맞춰서 너비 설정 */
+  /* width: fit-content;
+  margin: 0 auto;
+  align-items: center; */
+}
+
+/* #main-section > #login-form div {
+  display: flex;
+}
+
+#main-section > #login-form div > label {
+  width: fit-content;
+  margin-right: auto;
+}
+#main-section > #login-form div > input {
+  width: fit-content;
+  margin-left: auto;
+} */
+
+#login-form > div > button {
+  width: 100px;
+  margin: 0 auto;
+  /* margin-left: auto; */
+  height: 25px;
+  border-radius: 5px;
+  background: none;
+}
