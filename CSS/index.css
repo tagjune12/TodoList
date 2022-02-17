@@ -4,6 +4,11 @@
   margin: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 li {
   list-style: none;
 }
@@ -12,41 +17,20 @@ a {
   text-decoration: none;
 }
 
-.hidden {
-  display: none;
-}
-
 .checked {
   text-decoration: line-through;
 }
 
 /* 헤더 */
-#main-header {
+header {
   display: flex;
-}
-
-#main-header > #title {
-  width: fit-content;
-  margin: 0 auto;
-}
-
-#main-header > #signup {
-  display: absolute;
-  float: right;
-}
-
-#main-header > #signup:hover {
-  color: blue;
-  cursor: pointer;
-}
-
-/* 본문 */
-
-.content {
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.content section {
+/* 본문 */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

@@ -1,4 +1,4 @@
-#login-form {
+#signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,32 +9,31 @@
   padding: 10px 10px;
 }
 
-#login-form > h3 {
+#signup-form > h3 {
   margin-bottom: 20px;
 }
 /* ID,PW, 버튼 정렬 */
-#login-form div {
+#signup-form div {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-#login-form .id,
-#login-form .pw {
+#signup-form .id,
+#signup-form .pw {
   width: 100%;
 }
 
-#login-form .pw > label {
+#signup-form .pw > label {
   margin-right: 5px;
 }
 
-#login-form .buttons {
+#signup-form button {
   width: 100%;
   justify-content: space-around;
-  margin-bottom: 0;
 }
 
-#login-form .buttons button {
+#signup-form button {
   padding: 5px 10px;
   border-radius: 20px;
   border: 0;
