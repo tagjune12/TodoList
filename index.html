@@ -13,11 +13,13 @@
 </head>
 
 <body>
+  <!-- <img src="../image/forest_with_girl.jpg"/> -->
   <header id="main-header">
     <h1 id="title">TodoList</h1>
   </header>
   <div class="content">
     <section id="main-section">
+    <!-- <section id="main-section" style:="display:none"> -->
       <!-- 회원가입 -->
       <form id="signup-form" style="display:none">
         <h3>Sign Up</h3>
@@ -34,6 +36,7 @@
       </form>
       <!-- 로그인 -->
       <form id="login-form">
+      <!-- <form id="login-form" style="display:none"> -->
         <h3>Log In</h3>
         <div class="id">
           <label for="login-id">ID</label>
@@ -52,14 +55,15 @@
     </section>
     <!-- 시계 & Todo List -->
     <section id="clock-todolist" style="display:none">
+    <!-- <section id="clock-todolist" style="display:flex"> -->
       <!-- 시계 -->
-      <h3 id="clock"></h3>
+      <h2 id="clock"></h2>
       <div>
         <form id="todo-input-form">
           <input id="todo-input" class="todo-list" type="text" placeholder="할 일을 입력하세요" /><button>+</button>
         </form>
         <ul id="todo-list" class="todo-list">
-          <li><input type="checkbox" /><span>test</span><button>❌</button></li>
+          <!-- <li><input type="checkbox" /><span>test</span><button>❌</button></li> -->
         </ul>
       </div>
     </section>

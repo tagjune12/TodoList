@@ -85,6 +85,7 @@ const addTodo = (todo) => {
     todoList.appendChild(listItem);
 }
 
+// 일부아이템 삭제시 다른 아이템으로 대체되는 버그 있음
 const removeTodo = (event) => {
     const li = event.target.parentElement;
     const span = li.children[1];
