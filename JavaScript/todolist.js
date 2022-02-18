@@ -14,11 +14,10 @@ const onSubmit = (event) => {
     // 로컬저장소에 데이터 쓰기
     addTodo(todoContent.value);
 
-
     todoContent.value = "";
 }
 
-// 할일 추가될때 화면에만 이전것들도 같이 추가되는 버그 있음
+
 const showTodoList = (email = "") => {
     console.log("showTodoList:", email);
 
@@ -31,7 +30,7 @@ const showTodoList = (email = "") => {
 
     todos = readData(userEmail);
 
-    if (todos !== null) {
+    if (todos !== null && (todoList.children.length === 0)) {
         // todoList 화면에 표시
         let todoListItems = [];
         todos.forEach(value => {
@@ -63,7 +62,6 @@ const addTodo = (todo) => {
     if (todos === null) todos = [];
     todos.push(todo);
     writeData(userEmail, todos);
-    // showTodoList();
 
     const listItem = document.createElement("li");
 
@@ -85,7 +83,7 @@ const addTodo = (todo) => {
     todoList.appendChild(listItem);
 }
 
-// 일부아이템 삭제시 다른 아이템으로 대체되는 버그 있음
+
 const removeTodo = (event) => {
     const li = event.target.parentElement;
     const span = li.children[1];
@@ -93,7 +91,6 @@ const removeTodo = (event) => {
     todos = todos.filter((value) => value !== span.innerText);
     li.remove();
     writeData(userEmail, todos);
-    showTodoList();
 }
 
 const checkTodo = (event) => {

@@ -40,12 +40,19 @@
 #clock-todolist > div > ul li {
   display: flex;
   align-items: center;
+  margin: 3px 0px;
 }
 
 #clock-todolist > div > ul li > input {
   margin-right: 5px;
   /* background: none;
   border: 2px solid white; */
+}
+
+#clock-todolist > div > ul li > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #clock-todolist > div > ul li > button {
