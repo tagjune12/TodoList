@@ -34,5 +34,6 @@
 1. 할일 입력창 바로 위에 현재 시간 표시
 2. 할일 입력창에 할일을 입력하고 enter 혹은 '+'버튼을 누르면 Todo List에 추가됨
    - 입력된 할일 목록은 local storage에 '아이디 : [할일 목록]' 형태로 저장
+   ![local storage](https://user-images.githubusercontent.com/54172578/154853839-f19b9c03-e197-429a-b53a-edfe6d52f4b4.jpg)
 3. 체크박스를 체크하면 text에 중간선 추가
 4. ❌버튼을 누르면 할일 목록에서 해당 할일이 삭제됨
