@@ -30,3 +30,9 @@
 
 ### Todo List 입력페이지
 ![TodoList 입력페이지](https://user-images.githubusercontent.com/54172578/154833326-5fe3fead-b4a6-4d54-a726-13dd8cdb7a73.jpg)
+
+1. 할일 입력창 바로 위에 현재 시간 표시
+2. 할일 입력창에 할일을 입력하고 enter 혹은 '+'버튼을 누르면 Todo List에 추가됨
+   - 입력된 할일 목록은 local storage에 '아이디 : [할일 목록]' 형태로 저장
+3. 체크박스를 체크하면 text에 중간선 추가
+4. ❌버튼을 누르면 할일 목록에서 해당 할일이 삭제됨
