@@ -1,4 +1,4 @@
-import { loginEmail } from "./database.js";
+import { loginEmail } from "./lib/api.js";
 import { showTodoList } from "./todolist.js";
 
 const title = document.querySelector("#title > a");
@@ -16,15 +16,12 @@ const SHOW = "flex";
 const onSubmit = (event) => {
   event.preventDefault();
   console.log("로그인 Submit");
-  const userEmail = loginID.value;
-  const userPW = loginPW.value;
+  const emailInput = loginID.value;
+  const passwordInput = loginPW.value;
 
   if (event.submitter.id === "login") {
-    loginEmail(userEmail, userPW).then((userCredential) => {
-      // const user = userCredential.user;
-      // console.log(`login result: ${userCredential}`);
+    loginEmail(emailInput, passwordInput).then((userCredential) => {
       alert("환영합니다!");
-
       // 로그인폼 숨기기
       loginForm.style.display = HIDDEN;
 
@@ -32,6 +29,8 @@ const onSubmit = (event) => {
       signUpForm.style.display = HIDDEN;
 
       // Todo List 페이지에 표시될 유저이름 표시
+      // title.innerText = `Hello ${userEmail.split("@")[0]}!`;
+      const userEmail = userCredential.user.email;
       title.innerText = `Hello ${userEmail.split("@")[0]}!`;
 
       // TodoList와 시계 표시
@@ -41,9 +40,6 @@ const onSubmit = (event) => {
       showTodoList(userEmail);
 
     }).catch((error) => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // console.log(errorMessage);
       alert("일치하는 계정이 존재하지 않습니다.");
     })
   }

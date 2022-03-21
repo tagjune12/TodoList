@@ -1,10 +1,9 @@
-import { readData, writeData } from "./database.js";
+import { readData, writeData } from "./lib/database.js";
 
 const todoInputForm = document.querySelector("#todo-input-form");
 const todoContent = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
 
-let todos = [];
 let userEmail = "";
 
 const onSubmit = (event) => {
@@ -13,14 +12,13 @@ const onSubmit = (event) => {
 
     // 로컬저장소에 데이터 쓰기
     addTodo(todoContent.value);
-
     todoContent.value = "";
 }
 
 
 const showTodoList = (email = "") => {
     console.log("showTodoList:", email);
-
+    let todos = [];
     // 로그인시
     if (email !== "") {
         userEmail = email;
@@ -57,32 +55,21 @@ const showTodoList = (email = "") => {
         todoListItems.forEach(item => todoList.appendChild(item));
     }
 }
+/*
+    local storage 저장형태
+    key : 이메일
+    value : Array
+*/
+
 
 const addTodo = (todo) => {
-    if (todos === null) todos = [];
-    todos.push(todo);
-    writeData(userEmail, todos);
-
-    const listItem = document.createElement("li");
-
-    const checkBox = document.createElement("input");
-    checkBox.type = 'checkbox';
-    checkBox.addEventListener("click", checkTodo);
-
-    const content = document.createElement("span");
-    content.innerText = todo;
-
-    const removeButton = document.createElement("button");
-    removeButton.innerText = "❌";
-    removeButton.addEventListener("click", removeTodo);
-
-    listItem.appendChild(checkBox);
-    listItem.appendChild(content);
-    listItem.appendChild(removeButton);
-
-    todoList.appendChild(listItem);
+    let todos = readData(userEmail);
+    if (todos === null) {
+        todos = [];
+    }
+    const newTodos = todos.concat(todo);
+    writeData(userEmail, newTodos);
 }
-
 
 const removeTodo = (event) => {
     const li = event.target.parentElement;

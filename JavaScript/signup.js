@@ -1,5 +1,4 @@
-// import { getUserInfo, setUserInfo } from "./storage.js";
-import { signupEmail } from "./database.js";
+import { signupEmail } from "./lib/api.js";
 
 
 const signUpForm = document.querySelector("#signup-form");
@@ -16,20 +15,14 @@ const onsignUpSubmit = (event) => {
   const email = signUpID.value;
   const password = signUpPW.value;
 
-  // const localStorage = window.localStorage;
-  signupEmail(email, password).then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log(`signup result: ${userCredential}`);
+  signupEmail(email, password).then(() => {
     alert("회원가입 성공");
     signUpID.value = "";
     signUpPW.value = "";
-    // ...
+
   }).catch((error) => {
     const errorCode = error.code;
-    // const errorMessage = error.message;
     let errorMessage = "";
-    console.log(errorCode);
 
     switch (errorCode) {
       case ALREADY_IN_USE: errorMessage = "이미 존재하는 계정입니다.";
@@ -41,7 +34,6 @@ const onsignUpSubmit = (event) => {
     }
 
     alert(errorMessage);
-    // ..
   });
 }
 
