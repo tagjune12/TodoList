@@ -13,6 +13,9 @@ const signUpForm = document.querySelector("#signup-form");
 const HIDDEN = "none";
 const SHOW = "flex";
 
+
+console.log("load login.js");
+
 const onSubmit = (event) => {
   event.preventDefault();
   console.log("로그인 Submit");
