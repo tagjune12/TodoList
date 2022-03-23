@@ -9,6 +9,7 @@ const ALREADY_IN_USE = "auth/email-already-in-use";
 const INVALID_EMAIL = "auth/invalid-email";
 const WEAK_PASSWORD = "auth/weak-password";
 
+console.log('signup.js is loaded');
 
 const onsignUpSubmit = (event) => {
   event.preventDefault();

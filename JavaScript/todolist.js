@@ -1,10 +1,11 @@
-import { readData, writeData } from "./lib/database.js";
+import { readTodo, writeTodo, searchUser } from "./lib/database.js";
+import showClock from "./clock.js";
 
 const todoInputForm = document.querySelector("#todo-input-form");
 const todoContent = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
 
-let userEmail = "";
+showClock();
 
 const onSubmit = (event) => {
     console.log("onTodoSubmit");
@@ -16,68 +17,57 @@ const onSubmit = (event) => {
 }
 
 
-const showTodoList = (email = "") => {
-    console.log("showTodoList:", email);
-    let todos = [];
-    // 로그인시
-    if (email !== "") {
-        userEmail = email;
-        todos = readData(userEmail);
-        console.log(todos);
-    }
+const paintTodoList = () => {
+    const userID = searchUser();
 
-    todos = readData(userEmail);
+    let todos = readTodo(userID);
+    todos.map(todo => {
+        const listItem = document.createElement("li");
 
-    if (todos !== null && (todoList.children.length === 0)) {
-        // todoList 화면에 표시
-        let todoListItems = [];
-        todos.forEach(value => {
-            const listItem = document.createElement("li");
+        const checkBox = document.createElement("input");
+        checkBox.type = 'checkbox';
+        checkBox.addEventListener("click", checkTodo);
 
-            const checkBox = document.createElement("input");
-            checkBox.type = 'checkbox';
-            checkBox.addEventListener("click", checkTodo);
+        const content = document.createElement("span");
+        content.innerText = todo;
 
-            const content = document.createElement("span");
-            content.innerText = value;
+        const removeButton = document.createElement("button");
+        removeButton.innerText = "❌";
+        removeButton.addEventListener("click", removeTodo);
 
-            const removeButton = document.createElement("button");
-            removeButton.innerText = "❌";
-            removeButton.addEventListener("click", removeTodo);
-
-            listItem.appendChild(checkBox);
-            listItem.appendChild(content);
-            listItem.appendChild(removeButton);
-
-            todoListItems.push(listItem);
-        });
-
-        todoListItems.forEach(item => todoList.appendChild(item));
-    }
+        listItem.appendChild(checkBox);
+        listItem.appendChild(content);
+        listItem.appendChild(removeButton);
+        todoList.appendChild(listItem)
+    });
 }
 /*
     local storage 저장형태
     key : 이메일
-    value : Array
+    value :[{id: todo}]
 */
 
 
 const addTodo = (todo) => {
-    let todos = readData(userEmail);
-    if (todos === null) {
-        todos = [];
-    }
+    const userID = searchUser();
+    let todos = readTodo(userID);
+
     const newTodos = todos.concat(todo);
-    writeData(userEmail, newTodos);
+    writeTodo(userID, newTodos);
+    paintTodoList();
 }
 
 const removeTodo = (event) => {
     const li = event.target.parentElement;
     const span = li.children[1];
 
-    todos = todos.filter((value) => value !== span.innerText);
+    const userID = searchUser();
+    let todos = readTodo(userID);
+    todos = todos.filter((todo) => todo !== span.innerText);
+
     li.remove();
-    writeData(userEmail, todos);
+    writeTodo(userID, todos);
+    paintTodoList();
 }
 
 const checkTodo = (event) => {
@@ -89,6 +79,7 @@ const checkTodo = (event) => {
     else span.classList.remove("checked");
 }
 
+paintTodoList();
 todoInputForm.addEventListener("submit", onSubmit);
 
-export { showTodoList };
+// export { paintTodoList };

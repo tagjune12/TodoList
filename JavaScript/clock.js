@@ -8,5 +8,9 @@ function getClock() {
     clock.innerText = `${hours}:${minutes}:${seconds}`;
 }
 
-getClock(); // 웹사이트가 실행되자마자 바로 보여주기 위해 한번 호출
-setInterval(getClock, 1000);
+function showClock() {
+    getClock(); // 웹사이트가 실행되자마자 바로 보여주기 위해 한번 호출
+    setInterval(getClock, 1000);
+}
+
+export default showClock;

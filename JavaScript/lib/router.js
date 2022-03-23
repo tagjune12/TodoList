@@ -9,20 +9,21 @@ const Todolist = todolistTemplate();
 
 const routes = {
     '/': Home,
-    // '/home': Home,
+    '/home': Home,
     '/signup': Signup,
     '/todolist': Todolist
 }
 
 // entry point
-function initialRoutes(el) {
-    renderHTML(el, routes['/']);
+async function initialRoutes(el) {
+    return await renderHTML(el, routes['/']);
 }
 
 // set browser history
-function historyRouterPush(pathName, el) {
+async function historyRouterPush(pathName, el) {
+    console.log('historyRouterPush');
     window.history.pushState({}, pathName, window.location.origin + pathName)
-    renderHTML(el, routes[pathName])
+    return await renderHTML(el, routes[pathName]);
 }
 
 // render

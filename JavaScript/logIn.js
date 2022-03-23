@@ -1,20 +1,13 @@
+import loadPage from '../index.js';
 import { loginEmail } from "./lib/api.js";
-import { showTodoList } from "./todolist.js";
 
-const title = document.querySelector("#title > a");
+
+
 const loginID = document.querySelector("#login-id");
 const loginPW = document.querySelector("#login-pw");
 const loginForm = document.querySelector("#login-form");
-const clockSection = document.querySelector("#clock-todolist");
-
 const tosignUpButton = document.querySelector("#signup");
-const signUpForm = document.querySelector("#signup-form");
 
-const HIDDEN = "none";
-const SHOW = "flex";
-
-
-console.log("load login.js");
 
 const onSubmit = (event) => {
   event.preventDefault();
@@ -25,50 +18,47 @@ const onSubmit = (event) => {
   if (event.submitter.id === "login") {
     loginEmail(emailInput, passwordInput).then((userCredential) => {
       alert("환영합니다!");
-      // 로그인폼 숨기기
-      loginForm.style.display = HIDDEN;
-
-      // 회원가입폼 숨기기
-      signUpForm.style.display = HIDDEN;
 
       // Todo List 페이지에 표시될 유저이름 표시
-      // title.innerText = `Hello ${userEmail.split("@")[0]}!`;
       const userEmail = userCredential.user.email;
+      const title = document.querySelector("#title > a");
       title.innerText = `Hello ${userEmail.split("@")[0]}!`;
+      // title.innerText = `Hello ${userEmail.split("@")[0]}!`;
 
-      // TodoList와 시계 표시
-      clockSection.style.display = SHOW;
-
-      // Todo List 표시
-      showTodoList(userEmail);
+      const path = event.target.getAttribute('router');
+      loadPage(path);
+      localStorage.setItem('userid', userEmail);
 
     }).catch((error) => {
+      console.log(error);
       alert("일치하는 계정이 존재하지 않습니다.");
     })
   }
 }
 
-const onSignUpClick = () => {
-  loginForm.style.display = HIDDEN;
-  signUpForm.style.display = SHOW;
+const onSignUpClick = (event) => {
+  event.preventDefault();
+  const path = event.target.getAttribute('router');
+
+  console.log(path);
+  loadPage(path);
   console.log("회원가입 버튼 클릭");
 }
 
-const onTitleClick = () => {
-  title.innerText = "TodoList";
-  clearInputContent();
+// const onTitleClick = (event) => {
+//   title.innerText = "TodoList";
+//   clearInputContent();
 
-  signUpForm.style.display = HIDDEN;
-  clockSection.style.display = HIDDEN;
-  loginForm.style.display = SHOW;
-}
+//   const path = event.target.getAttribute('router');
+//   loadPage(path);
+// }
 
-const clearInputContent = () => {
-  const inputTags = document.querySelectorAll("input");
+// const clearInputContent = () => {
+//   const inputTags = document.querySelectorAll("input");
 
-  inputTags.forEach((item) => item.value = "");
-}
+//   inputTags.forEach((item) => item.value = "");
+// }
 
 loginForm.addEventListener("submit", onSubmit);
 tosignUpButton.addEventListener("click", onSignUpClick);
-title.addEventListener("click", onTitleClick);
+// title.addEventListener("click", onTitleClick);
