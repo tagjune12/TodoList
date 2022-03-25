@@ -58,7 +58,12 @@ const onSignUpClick = (event) => {
 
 //   inputTags.forEach((item) => item.value = "");
 // }
+const addEventListeners = () => {
+  console.log("load home.js from addEventListeners");
+  loginForm.addEventListener("submit", onSubmit);
+  tosignUpButton.addEventListener("click", onSignUpClick);
+}
 
-loginForm.addEventListener("submit", onSubmit);
-tosignUpButton.addEventListener("click", onSignUpClick);
 // title.addEventListener("click", onTitleClick);
+export default addEventListeners;
+

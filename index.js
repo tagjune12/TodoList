@@ -1,61 +1,87 @@
 // import './CSS/index.css';
 // import './CSS/login.css';
 
-import { initialRoutes, historyRouterPush } from './JavaScript/lib/router.js';
+import { initialRoutes, historyRouterPush, renderHTML } from './JavaScript/lib/router.js';
 
 
 const contentDiv = document.querySelector("div.content");
 const title = document.querySelector("#title > a");
 
-window.onload = () => {
-    try {
-        initialRoutes(contentDiv).then(() => {
-            import('./JavaScript/logIn.js');
-        });
-        console.log('onload');
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-// window.location.reload = () => {
-//     console.log('reload');
+// window.onload = () => {
+//     try {
+//         // window.history.pushState({}, '', window.location.origin + '/home');
+//         initialRoutes(contentDiv).then(() => {
+//             import('./JavaScript/home.js');
+//         });
+//         console.log('onload');
+//     } catch (e) {
+//         console.error(e);
+//     }
+//     console.log("onload");
 // }
 
-const onTitleClick = (event) => {
-    title.innerText = "TodoList";
-    clearInputContent();
-
-    const path = event.target.getAttribute('router');
-    try {
-        historyRouterPush(path, contentDiv).then(() => {
-            import('./JavaScript/logIn.js');
+try {
+    // window.history.pushState({}, '', window.location.origin + '/home');
+    initialRoutes(contentDiv).then(() => {
+        import('./JavaScript/home.js').then(obj => {
+            console.log(obj);
+            obj.default();
         });
-    } catch (e) {
-        console.error(e);
-    }
+    });
+    console.log('onload');
+} catch (e) {
+    console.error(e);
 }
+// console.log("onload");
 
-const clearInputContent = () => {
-    const inputTags = document.querySelectorAll("input");
+// window.onunload = (event) => {
+//     setTimeout(null, 50000);
+//     console.log('onunload');
 
-    inputTags.forEach((item) => item.value = "");
-}
+// }
 
-title.addEventListener("click", onTitleClick);
-
-
-
-
-export default function loadPage(path) {
-    console.log("load Page");
+const loadPage = (path) => {
+    console.log("load Page", path);
+    // const targetPath = path === '/' ? '/home' : path;
     try {
         historyRouterPush(path, contentDiv).then(() => {
-            import(`./JavaScript${path}.js`);
-            // console.log(`./JavaScript${path}.js`);
+            if (path === '/') {
+
+                import(`./JavaScript/home.js`).then((obj) => {
+                    console.log("import home.js");
+                    // console.log(obj);
+                    obj.default();
+                });
+            }
+            else {
+                console.log(`import${path}.js`);
+                import(`./JavaScript${path}.js`);
+            }
             // import(`./CSS${path}.css`);
         })
     } catch (e) {
         console.error(e);
     }
 }
+
+const onTitleClick = (event) => {
+    event.preventDefault();
+    window.history.pushState({}, '/', window.location.origin);
+    window.history.go(0);
+}
+
+window.onpopstate = () => {
+    loadPage(window.location.pathname);
+}
+
+// const clearInputContent = () => {
+//     const inputTags = document.querySelectorAll("input");
+
+//     inputTags.forEach((item) => item.value = "");
+// }
+
+title.addEventListener("click", onTitleClick);
+
+
+
+export default loadPage;

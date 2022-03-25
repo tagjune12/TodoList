@@ -23,6 +23,7 @@ async function initialRoutes(el) {
 async function historyRouterPush(pathName, el) {
     console.log('historyRouterPush');
     window.history.pushState({}, pathName, window.location.origin + pathName)
+
     return await renderHTML(el, routes[pathName]);
 }
 
@@ -31,4 +32,4 @@ function renderHTML(el, route) {
     el.innerHTML = route
 }
 
-export { initialRoutes, historyRouterPush };
+export { initialRoutes, historyRouterPush, renderHTML };

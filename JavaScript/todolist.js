@@ -20,6 +20,8 @@ const onSubmit = (event) => {
 const paintTodoList = () => {
     const userID = searchUser();
 
+    todoList.innerHTML = "";
+
     let todos = readTodo(userID);
     todos.map(todo => {
         const listItem = document.createElement("li");

@@ -8,7 +8,8 @@ export default {
 
     entry: {
         router: './JavaScript/lib/router.js',
-        app: './index.js'
+        // app: './index.js'
+        main: './index.js'
     },
 
     output: {
@@ -40,5 +41,15 @@ export default {
             }
         ]
     },
-    mode: 'development'
+
+    mode: 'development',
+
+    devServer: {
+        publicPath: "/",
+        // host: "dev.domain.com",
+        overlay: true,
+        // port: 8081,
+        // stats: "errors-only",
+        historyApiFallback: true,
+    }
 };
