@@ -14,11 +14,6 @@ body {
   height: 100%;
 }
 
-/* html {
-  display: flex;
-  flex-direction: column;
-} */
-
 body {
   flex: 1; /* flex: 1 1 0 */
   overflow: hidden;

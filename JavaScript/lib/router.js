@@ -1,28 +1,24 @@
-import homeTemplate from '../../pages/home.hbs';
-import signupTemplate from '../../pages/signup.hbs';
-import todolistTemplate from '../../pages/todolist.hbs';
+import Home from '../../pages/Home.js';
+import SingUp from '../../pages/SignUp.js';
+import TodoList from '../../pages/TodoList.js';
 
-const Home = homeTemplate();
-const Signup = signupTemplate();
-const Todolist = todolistTemplate();
+
+const HomePage = Home();
+const SignupPage = SingUp();
+const TodolistPage = TodoList();
 
 
 const routes = {
-    '/': Home,
-    '/home': Home,
-    '/signup': Signup,
-    '/todolist': Todolist
-}
-
-// entry point
-async function initialRoutes(el) {
-    return await renderHTML(el, routes['/']);
+    '/': HomePage,
+    '/home': HomePage,
+    '/signup': SignupPage,
+    '/todolist': TodolistPage
 }
 
 // set browser history
 async function historyRouterPush(pathName, el) {
     console.log('historyRouterPush');
-    window.history.pushState({}, pathName, window.location.origin + pathName)
+    window.history.pushState({}, '', window.location.origin + pathName)
 
     return await renderHTML(el, routes[pathName]);
 }
@@ -32,4 +28,4 @@ function renderHTML(el, route) {
     el.innerHTML = route
 }
 
-export { initialRoutes, historyRouterPush, renderHTML };
+export { historyRouterPush, renderHTML };

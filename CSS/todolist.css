@@ -7,6 +7,9 @@
 #clock {
   margin-bottom: 10px;
 }
+#clock:hover {
+  cursor: default;
+}
 
 #clock-todolist > div {
   width: 300px;
@@ -45,8 +48,6 @@
 
 #clock-todolist > div > ul li > input {
   margin-right: 5px;
-  /* background: none;
-  border: 2px solid white; */
 }
 
 #clock-todolist > div > ul li > span {

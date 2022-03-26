@@ -2,16 +2,12 @@ import loadPage from '../index.js';
 import { loginEmail } from "./lib/api.js";
 
 
-
-const loginID = document.querySelector("#login-id");
-const loginPW = document.querySelector("#login-pw");
-const loginForm = document.querySelector("#login-form");
-const tosignUpButton = document.querySelector("#signup");
-
-
 const onSubmit = (event) => {
   event.preventDefault();
   console.log("로그인 Submit");
+
+  const loginID = document.querySelector("#login-id");
+  const loginPW = document.querySelector("#login-pw");
   const emailInput = loginID.value;
   const passwordInput = loginPW.value;
 
@@ -23,7 +19,6 @@ const onSubmit = (event) => {
       const userEmail = userCredential.user.email;
       const title = document.querySelector("#title > a");
       title.innerText = `Hello ${userEmail.split("@")[0]}!`;
-      // title.innerText = `Hello ${userEmail.split("@")[0]}!`;
 
       const path = event.target.getAttribute('router');
       loadPage(path);
@@ -45,25 +40,13 @@ const onSignUpClick = (event) => {
   console.log("회원가입 버튼 클릭");
 }
 
-// const onTitleClick = (event) => {
-//   title.innerText = "TodoList";
-//   clearInputContent();
+export default () => {
 
-//   const path = event.target.getAttribute('router');
-//   loadPage(path);
-// }
+  const loginForm = document.querySelector("#login-form");
+  const tosignUpButton = document.querySelector("#signup");
 
-// const clearInputContent = () => {
-//   const inputTags = document.querySelectorAll("input");
-
-//   inputTags.forEach((item) => item.value = "");
-// }
-const addEventListeners = () => {
   console.log("load home.js from addEventListeners");
   loginForm.addEventListener("submit", onSubmit);
   tosignUpButton.addEventListener("click", onSignUpClick);
-}
-
-// title.addEventListener("click", onTitleClick);
-export default addEventListeners;
+};
 

@@ -1,18 +1,14 @@
 import { signupEmail } from "./lib/api.js";
 
 
-const signUpForm = document.querySelector("#signup-form");
-const signUpID = document.querySelector("#signup-form #userID");
-const signUpPW = document.querySelector("#signup-form #userPW");
-
-const ALREADY_IN_USE = "auth/email-already-in-use";
-const INVALID_EMAIL = "auth/invalid-email";
-const WEAK_PASSWORD = "auth/weak-password";
-
 console.log('signup.js is loaded');
 
 const onsignUpSubmit = (event) => {
   event.preventDefault();
+
+  const signUpID = document.querySelector("#signup-form #userID");
+  const signUpPW = document.querySelector("#signup-form #userPW");
+
   const email = signUpID.value;
   const password = signUpPW.value;
 
@@ -24,6 +20,10 @@ const onsignUpSubmit = (event) => {
   }).catch((error) => {
     const errorCode = error.code;
     let errorMessage = "";
+
+    const ALREADY_IN_USE = "auth/email-already-in-use";
+    const INVALID_EMAIL = "auth/invalid-email";
+    const WEAK_PASSWORD = "auth/weak-password";
 
     switch (errorCode) {
       case ALREADY_IN_USE: errorMessage = "이미 존재하는 계정입니다.";
@@ -38,4 +38,9 @@ const onsignUpSubmit = (event) => {
   });
 }
 
-signUpForm.addEventListener("submit", onsignUpSubmit);
+
+
+export default () => {
+  const signUpForm = document.querySelector("#signup-form");
+  signUpForm.addEventListener("submit", onsignUpSubmit);
+};

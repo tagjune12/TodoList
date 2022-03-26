@@ -13,7 +13,6 @@ export default {
     },
 
     output: {
-        // path: resolve(__dirname, './dist'),
         path: path.resolve('./dist'),
         filename: '[name].js'
     },
@@ -32,10 +31,6 @@ export default {
     module: {
         rules: [
             {
-                test: /\.hbs$/,
-                loader: 'handlebars-loader'
-            },
-            {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             }
@@ -44,12 +39,12 @@ export default {
 
     mode: 'development',
 
-    devServer: {
-        publicPath: "/",
-        // host: "dev.domain.com",
-        overlay: true,
-        // port: 8081,
-        // stats: "errors-only",
-        historyApiFallback: true,
-    }
+    // devServer: {
+    //     publicPath: "/",
+    //     // host: "dev.domain.com",
+    //     overlay: true,
+    //     // port: 8081,
+    //     // stats: "errors-only",
+    //     historyApiFallback: true,
+    // }
 };
