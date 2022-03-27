@@ -22,7 +22,7 @@
   "homepage": "https://github.com/tagjune12/TodoList#readme",
   "dependencies": {
     "firebase": "9.6.9",
-    "follow-redirects": "^1.14.9",
+    "follow-redirects": "^1.14.8",
     "http-server": "^14.1.0",
     "minimist": "^1.2.6"
   },
