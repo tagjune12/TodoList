@@ -1,6 +1,15 @@
 # 프로젝트 설명
  바닐라JS로 만든 Todo List 프로젝트
  
+# 사용환경
+ - firebase 9.6.9
+ - webpack 5.70.0
+ - webpack-cli 4.9.2
+ - webpack-dev-server 4.7.4
+ - html-webpack-plugin 5.5.0
+ - css-loader 6.7.1
+ - mini-css-extract-plugin 2.6.0
+
 ## 주요기능
  1. 로그인 페이지
     - 로그인
