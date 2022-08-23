@@ -1,0 +1,61 @@
+#clock-todolist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#clock {
+  margin-bottom: 10px;
+}
+#clock:hover {
+  cursor: default;
+}
+
+#clock-todolist > div {
+  width: 300px;
+}
+
+#clock-todolist button {
+  background: none;
+  border: none;
+}
+#todo-input-form {
+  display: flex;
+}
+
+#todo-input {
+  flex-grow: 1;
+}
+
+#todo-input-form > button {
+  font-size: 2em;
+  height: fit-content;
+  margin-left: auto;
+}
+
+#clock-todolist > div > ul {
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 10px 5px;
+  height: auto;
+}
+#clock-todolist > div > ul li {
+  display: flex;
+  align-items: center;
+  margin: 3px 0px;
+}
+
+#clock-todolist > div > ul li > input {
+  margin-right: 5px;
+}
+
+#clock-todolist > div > ul li > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#clock-todolist > div > ul li > button {
+  margin-left: auto;
+}
